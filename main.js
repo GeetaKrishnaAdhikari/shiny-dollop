@@ -115,9 +115,7 @@ if (isDev) {
   appIcon = new Tray(path)
   appIcon.setToolTip('Electron Demo in the tray.');
 
-  	console.log(contextMenu.items[0].checked);
-
-  appIcon.setContextMenu(contextMenu)
+  appIcon.setContextMenu(menu)
 
    createDefaultWindow();
 }

@@ -5,22 +5,21 @@
 </head>
 <body>
   Current version: <span id="version">vX.Y.Z</span>
-  <div id="messages"></div>
 <script>
 // Display the current version
 let version = window.location.hash.substring(1);
 console.log(version);
 document.getElementById('version').innerText = version;
 
+var page1='http://vibugbot1234.mybluemix.net/';
+document.getElementById('container').innerHTML= '<object data="https://www.miraclesoft.com/" type="text/html" width=100% height=650px><embed src="'+page1+'" type="text/html" /></object>';
+
 // Listen for messages
 const {ipcRenderer} = require('electron');
 ipcRenderer.on('message', function(event, text) {
 alert('message',text);
-  var container = document.getElementById('messages');
-  var message = document.createElement('div');
-  message.innerHTML = text;
-  container.appendChild(message);
 })
+
 </script>
 </body>
 </html>
