@@ -59,7 +59,7 @@ function sendStatusToWindow(text) {
   win.webContents.send('message', text);
 }
 function createDefaultWindow() {
-  win = new BrowserWindow();
+win = new BrowserWindow({icon: __dirname + '/build/icon.ico'});
   win.webContents.openDevTools();
   win.on('closed', () => {
     win = null;
@@ -106,7 +106,7 @@ if (isDev) {
 	  autoUpdater.checkForUpdates(); 
 	}},
     {label: 'Help', click: function() { 
-	let child = new BrowserWindow({parent: top, modal: true, show: false})
+	let child = new BrowserWindow()
 child.loadURL('http://www.miraclesoft.com/')
 child.once('ready-to-show', () => {
   child.show()
