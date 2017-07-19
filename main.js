@@ -106,7 +106,11 @@ if (isDev) {
 	  autoUpdater.checkForUpdates(); 
 	}},
     {label: 'Help', click: function() { 
-	console.log('Help');
+	let child = new BrowserWindow({parent: top, modal: true, show: false})
+child.loadURL('http://www.miraclesoft.com/')
+child.once('ready-to-show', () => {
+  child.show()
+})
 	}},
 	{label:'Quit', role:'quit'}
   ])
