@@ -19,7 +19,8 @@
   "build": {
     "appId": "com.github.GeetaKrishnaAdhikari.electronupdaterexample",
     "nsis": {
-      "perMachine": true
+      "perMachine": true,
+	  "installerIcon": "/icon.ico"
     }
   },
   "publish": [{
