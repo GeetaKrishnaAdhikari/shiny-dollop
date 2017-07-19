@@ -1,6 +1,6 @@
 {
   "name": "electron-updater-example",
-  "version": "0.4.4",
+  "version": "0.5.1",
   "main": "main.js",
   "description": "electron-updater example project",
   "author": "GeetaKrishna",
@@ -20,7 +20,8 @@
     "appId": "com.github.GeetaKrishnaAdhikari.electronupdaterexample",
     "nsis": {
       "perMachine": true
-    }
+    },
+	"copyright" : "Copyright © year ${author}"
   },
   "publish": [{
              "provider": "github",

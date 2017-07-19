@@ -59,8 +59,7 @@ function sendStatusToWindow(text) {
   win.webContents.send('message', text);
 }
 function createDefaultWindow() {
-win = new BrowserWindow({icon: __dirname + '/build/icon.ico'});
-  win.webContents.openDevTools();
+win = new BrowserWindow({icon: __dirname + '/icon.ico'});
   win.on('closed', () => {
     win = null;
   });
