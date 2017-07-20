@@ -56,7 +56,7 @@ autoUpdater.on('update-available', (ev, info) => {
 	
 		var notification = new ToastNotification({
     appId: appId,
-    template: `<toast><visual><binding template="ToastText01"><text id="1">%s</text></binding></visual></toast>`,
+    template: `<toast><visual><binding template="ToastText01"><image placement="AppLogoOverride" src="tray_icons.png" /><text id="1">%s</text></binding></visual></toast>`,
     strings: ['Update available.']
 })
 	
@@ -69,7 +69,7 @@ autoUpdater.on('update-not-available', (ev, info) => {
 	
 		var notification = new ToastNotification({
     appId: appId,
-    template: `<toast><visual><binding template="ToastText01"><text id="1">%s</text></binding></visual></toast>`,
+    template: `<toast><visual><binding template="ToastText01"><image placement="AppLogoOverride" src="tray_icons.png" /><text id="1">%s</text></binding></visual></toast>`,
     strings: ['Update not available.']
 })
 	
@@ -94,7 +94,7 @@ autoUpdater.on('update-downloaded', (ev, info) => {
 	
 		var notification = new ToastNotification({
     appId: appId,
-    template: `<toast><visual><binding template="ToastText01"><text id="1">%s</text></binding></visual></toast>`,
+    template: `<toast><visual><binding template="ToastText01"><image placement="AppLogoOverride" src="tray_icons.png" /><text id="1">%s</text></binding></visual></toast>`,
     strings: ['Update downloaded; will install in 5 seconds']
 })
 	
