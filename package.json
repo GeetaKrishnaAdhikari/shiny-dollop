@@ -1,8 +1,8 @@
 {
   "name": "Electron-Demo",
-  "version": "0.5.5",
+  "version": "0.5.6",
   "main": "main.js",
-  "description": "electron-updater example project",
+  "description": "electron demo example project",
   "author": "GeetaKrishna",
   "devDependencies": {
     "electron": "^1.4.15",
@@ -19,7 +19,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "build": {
-    "appId": "com.github.GeetaKrishnaAdhikari.electronupdaterexample",
+    "appId": "com.github.GeetaKrishnaAdhikari.electrondemo",
     "icon": "icon.ico",
     "nsis": {
       "perMachine": true
