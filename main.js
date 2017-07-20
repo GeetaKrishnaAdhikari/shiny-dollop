@@ -4,7 +4,7 @@
 const {app, BrowserWindow,Tray, Menu, protocol, ipcMain} = require('electron');
 const log = require('electron-log');
 const {autoUpdater} = require("electron-updater");
-
+var path=require('path');
 //-------------------------------------------------------------------
 // Logging
 //
