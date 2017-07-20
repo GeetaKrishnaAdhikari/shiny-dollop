@@ -1,12 +1,11 @@
 {
-  "name": "electron-updater-example",
-  "version": "0.5.4",
+  "name": "Electron-Demo",
+  "version": "0.5.5",
   "main": "main.js",
   "description": "electron-updater example project",
   "author": "GeetaKrishna",
   "devDependencies": {
     "electron": "^1.4.15",
-	    "electron-rebuild": "^1.5.11",
     "electron-builder": "^19.4.2"
   },
   "dependencies": {
@@ -17,7 +16,7 @@
   "scripts": {
     "start": "electron main.js",
     "dist": "build --win -p always",
-    "postinstall": "./node_modules/.bin/electron-rebuild"
+    "postinstall": "electron-builder install-app-deps"
   },
   "build": {
     "appId": "com.github.GeetaKrishnaAdhikari.electronupdaterexample",
