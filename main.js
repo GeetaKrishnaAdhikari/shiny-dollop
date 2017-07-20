@@ -23,25 +23,8 @@ log.info('App starting...');
 // THIS SECTION IS NOT REQUIRED
 //-------------------------------------------------------------------
 let template = []
-if (process.platform === 'darwin') {
-  // OS X
-  const name = app.getName();
-  template.unshift({
-    label: name,
-    submenu: [
-      {
-        label: 'About ' + name,
-        role: 'about'
-      },
-      {
-        label: 'Quit',
-        accelerator: 'Command+Q',
-        click() { app.quit(); }
-      },
-    ]
-  })
-}
-
+const appId = 'electron-windows-notifications'
+const {ToastNotification} = require('electron-windows-notifications')
 
 //-------------------------------------------------------------------
 // Open a window that displays the version
@@ -70,9 +53,29 @@ autoUpdater.on('checking-for-update', () => {
   sendStatusToWindow('Checking for update...');
 })
 autoUpdater.on('update-available', (ev, info) => {
+	
+		var notification = new ToastNotification({
+    appId: appId,
+    template: `<toast><visual><binding template="ToastText01"><text id="1">%s</text></binding></visual></toast>`,
+    strings: ['Update available.']
+})
+	
+	notification.on('activated', () => console.log('Activated!'))
+notification.show()
+	
   sendStatusToWindow('Update available.');
 })
 autoUpdater.on('update-not-available', (ev, info) => {
+	
+		var notification = new ToastNotification({
+    appId: appId,
+    template: `<toast><visual><binding template="ToastText01"><text id="1">%s</text></binding></visual></toast>`,
+    strings: ['Update not available.']
+})
+	
+	notification.on('activated', () => console.log('Activated!'))
+notification.show()
+	
   sendStatusToWindow('Update not available.');
 })
 autoUpdater.on('error', (ev, err) => {
@@ -88,6 +91,16 @@ autoUpdater.on('download-progress', (progressObj) => {
   win.setProgressBar(progressObj.bytesPerSecond);
 })
 autoUpdater.on('update-downloaded', (ev, info) => {
+	
+		var notification = new ToastNotification({
+    appId: appId,
+    template: `<toast><visual><binding template="ToastText01"><text id="1">%s</text></binding></visual></toast>`,
+    strings: ['Update downloaded; will install in 5 seconds']
+})
+	
+	notification.on('activated', () => console.log('Activated!'))
+notification.show()
+	
   sendStatusToWindow('Update downloaded; will install in 5 seconds');
 });
 app.on('ready', function() {
@@ -111,7 +124,9 @@ child.once('ready-to-show', () => {
   child.show()
 })
 	}},
-	{label:'Quit', role:'quit'}
+	{label:'Quit', role:'quit', click:function(){
+		app.quit();
+	}}
   ])
   
 		  path=__dirname+'/tray_icons.png';

@@ -1,6 +1,6 @@
 {
   "name": "electron-updater-example",
-  "version": "0.5.1",
+  "version": "0.5.4",
   "main": "main.js",
   "description": "electron-updater example project",
   "author": "GeetaKrishna",
@@ -10,27 +10,32 @@
   },
   "dependencies": {
     "electron-log": "^1.3.0",
-    "electron-updater": "^1.4.2"
+    "electron-rebuild": "^1.5.11",
+    "electron-updater": "^1.4.2",
+    "electron-windows-notifications": "^1.1.13"
   },
   "scripts": {
     "start": "electron main.js",
-    "dist": "build --win -p always"
+    "dist": "build --win -p always",
+    "postinstall": "./node_modules/.bin/electron-rebuild"
   },
   "build": {
     "appId": "com.github.GeetaKrishnaAdhikari.electronupdaterexample",
+    "icon": "icon.ico",
     "nsis": {
       "perMachine": true
     },
-	"copyright" : "Copyright © year ${author}"
+    "copyright": "Copyright © year ${author}"
   },
-  "publish": [{
-             "provider": "github",
-             "owner": "GeetaKrishnaAdhikari",
-             "repo": "shiny-dollop"
-         }],
-  "repository" :
-  { 
-	"type" : "generic",
-	"url" : "https://github.com/GeetaKrishnaAdhikari/shiny-dollop"
+  "publish": [
+    {
+      "provider": "github",
+      "owner": "GeetaKrishnaAdhikari",
+      "repo": "shiny-dollop"
+    }
+  ],
+  "repository": {
+    "type": "generic",
+    "url": "https://github.com/GeetaKrishnaAdhikari/shiny-dollop"
   }
 }
