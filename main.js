@@ -25,7 +25,9 @@ log.info('App starting...');
 let template = []
 const appId = 'electron-windows-notifications'
 const {ToastNotification} = require('electron-windows-notifications')
-let imagePath = (`file:///${path.join(__dirname,'tray_icons.png').replace(/\\/g, '/')}`)
+let imagePath = __dirname+'/tray_icons.png';
+
+
 //-------------------------------------------------------------------
 // Open a window that displays the version
 //
@@ -37,10 +39,27 @@ let imagePath = (`file:///${path.join(__dirname,'tray_icons.png').replace(/\\/g,
 //-------------------------------------------------------------------
 let win;
 
+
+ipcMain.on('asdty',(event, arg) => {
+
+   var notification = new ToastNotification({
+    appId: appId,
+    template: `<toast><visual><binding template="ToastImageAndText02"><image id="1" src="%s"/><text id="1">%s</text><text id="2">%s</text></binding></visual></toast>`,
+    strings: [imagePath,'Electron-Demo',arg]
+})
+
+notification.on('activated', () => console.log('Activated!'))
+notification.show()
+
+})
+
+
 function sendStatusToWindow(text) {
   log.info(text);
   win.webContents.send('message', text);
 }
+
+
 function createDefaultWindow() {
 win = new BrowserWindow({icon: __dirname + '/icon.ico'});
   win.on('closed', () => {
@@ -91,9 +110,7 @@ autoUpdater.on('download-progress', (progressObj) => {
   win.setProgressBar(progressObj.bytesPerSecond);
 })
 autoUpdater.on('update-downloaded', (ev, info) => {
-	
-	
-	
+
 		var notification = new ToastNotification({
     appId: appId,
     template: `<toast><visual><binding template="ToastImageAndText02"><image id="1" src="%s"/><text id="1">%s</text><text id="2">%s</text></binding></visual></toast>`,
@@ -105,12 +122,42 @@ notification.show()
 	
   sendStatusToWindow('Update downloaded; will install in 5 seconds');
 });
+
+
 app.on('ready', function() {
 		console.log('app starts');
 	const isDev = require('electron-is-dev');
 
 if (isDev) {
 	console.log('Running in development');
+	
+	const menu = Menu.buildFromTemplate([
+    {label: 'Check for Updates', click: function() {
+	console.log('Running in production');
+	  autoUpdater.checkForUpdates(); 
+	}},
+    {label: 'Help', click: function() { 
+	let child = new BrowserWindow()
+child.loadURL('http://www.miraclesoft.com/')
+child.once('ready-to-show', () => {
+  child.show()
+})
+	}},
+	{label:'Quit', role:'quit', click:function(){
+		app.quit();
+	}}
+  ])
+  
+		  path=__dirname+'/tray_icons.png';
+  appIcon = new Tray(path)
+  appIcon.setToolTip('Electron Demo in the tray.');
+
+  appIcon.setContextMenu(menu)
+
+   createDefaultWindow();
+   
+   sendStatusToWindow(imagePath);
+	
 } else {
 	console.log('Running in production');
 	// Create the Menu
@@ -138,8 +185,10 @@ child.once('ready-to-show', () => {
   appIcon.setContextMenu(menu)
 
    createDefaultWindow();
-}
+   
+   sendStatusToWindow(imagePath);
   
+}
 });
 app.on('window-all-closed', () => {
   app.quit();
