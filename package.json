@@ -6,11 +6,11 @@
   "author": "GeetaKrishna",
   "devDependencies": {
     "electron": "^1.4.15",
+	    "electron-rebuild": "^1.5.11",
     "electron-builder": "^19.4.2"
   },
   "dependencies": {
     "electron-log": "^1.3.0",
-    "electron-rebuild": "^1.5.11",
     "electron-updater": "^1.4.2",
     "electron-windows-notifications": "^1.1.13"
   },
