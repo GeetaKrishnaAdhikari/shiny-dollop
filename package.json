@@ -1,6 +1,6 @@
 {
   "name": "Electron-Demo",
-  "version": "0.5.6",
+  "version": "0.5.7",
   "main": "main.js",
   "description": "electron demo example project",
   "author": "GeetaKrishna",

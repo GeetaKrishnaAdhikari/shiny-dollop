@@ -25,7 +25,7 @@ log.info('App starting...');
 let template = []
 const appId = 'electron-windows-notifications'
 const {ToastNotification} = require('electron-windows-notifications')
-
+let imagePath = (`file:///${path.join(__dirname,'tray_icons.png').replace(/\\/g, '/')}`)
 //-------------------------------------------------------------------
 // Open a window that displays the version
 //
@@ -56,12 +56,8 @@ autoUpdater.on('update-available', (ev, info) => {
 	
 		var notification = new ToastNotification({
     appId: appId,
-    template: `<toast><visual><binding template="ToastImageAndText02">
-            <image id="1" src="tray_icons.png" alt="image1"/>
-            <text id="1">Electron Demo</text>
-            <text id="2">%s</text>
-        </binding></visual></toast>`,
-    strings: ['Update available.']
+    template: `<toast><visual><binding template="ToastImageAndText02"><image id="1" src="%s"/><text id="1">%s</text><text id="2">%s</text></binding></visual></toast>`,
+    strings: [imagePath,'Electron-Demo','Update available.']
 })
 	
 	notification.on('activated', () => console.log('Activated!'))
@@ -73,12 +69,8 @@ autoUpdater.on('update-not-available', (ev, info) => {
 	
 		var notification = new ToastNotification({
     appId: appId,
-    template: `<toast><visual><binding template="ToastImageAndText02">
-            <image id="1" src="tray_icons.png" alt="image1"/>
-            <text id="1">Electron Demo</text>
-            <text id="2">%s</text>
-        </binding></visual></toast>`,
-    strings: ['Update not available.']
+    template: `<toast><visual><binding template="ToastImageAndText02"><image id="1" src="%s"/><text id="1">%s</text><text id="2">%s</text></binding></visual></toast>`,
+    strings: [imagePath,'Electron-Demo','Update not available.']
 })
 	
 	notification.on('activated', () => console.log('Activated!'))
@@ -104,12 +96,8 @@ autoUpdater.on('update-downloaded', (ev, info) => {
 	
 		var notification = new ToastNotification({
     appId: appId,
-    template: `<toast><visual><binding template="ToastImageAndText02">
-            <image id="1" src="tray_icons.png" alt="image1"/>
-            <text id="1">Electron Demo</text>
-            <text id="2">%s</text>
-        </binding></visual></toast>`,
-    strings: ['Update downloaded; will install in 5 seconds']
+    template: `<toast><visual><binding template="ToastImageAndText02"><image id="1" src="%s"/><text id="1">%s</text><text id="2">%s</text></binding></visual></toast>`,
+    strings: [imagePath,'Electron-Demo','Update downloaded; will install in 5 seconds']
 })
 	
 	notification.on('activated', () => console.log('Activated!'))
