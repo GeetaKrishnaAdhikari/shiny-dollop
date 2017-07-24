@@ -25,7 +25,7 @@ log.info('App starting...');
 let template = []
 const appId = 'electron-windows-notifications'
 const {ToastNotification} = require('electron-windows-notifications')
-let imagePath = __dirname+'/tray_icons.png';
+let imagePath = path.join(__dirname, 'build/tray_icons.png');
 
 
 //-------------------------------------------------------------------
